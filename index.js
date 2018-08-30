@@ -68,7 +68,7 @@ function getBest(group_id, callback) {
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				best_list += element[1] + ": " + element[2] + "\n";
+     				best_list += element[1] + "：" + element[2] + "\n";
      				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
@@ -167,7 +167,7 @@ function test() {
 	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
 		out = best_list + "\n\n";
 		getPrayTime('C48e39d01abde6266ae70194513b4c2f5', function(prayTime){
-			out = best_list + "\n\n(star)\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			out += prayTime + "\n\n(star)\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
 			client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
 				type: "text",
 				text: out
