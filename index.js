@@ -15,6 +15,10 @@ app.post('/', line.middleware(lineConfig), function(req, res) {
     });
 });
 
+app.listen(3000, function() {
+  console.log('App now running on port', this.address().port);
+});
+
 function handleEvent(event) {
   switch (event.type) {
     case 'join':
