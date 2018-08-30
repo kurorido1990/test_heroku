@@ -66,23 +66,10 @@ var timer2;
 function test() {
 
 console.log("xxxxxx");
-    var CHANNEL_ACCESS_TOKEN = process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN;
-    var url = 'https://api.line.me/v2/bot/message/push';
-    console.log("x11111xxxxx");
-    request(url, {
-        'headers': {
-            'Content-Type': 'application/json; charset=UTF-8',
-            'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
-        },
-        'method': 'post',
-        'payload': JSON.stringify({
-            'to':  'Ca235f9483eb71d8f7a381b2777011c17',
-            'messages': [{
-                type:'text',
-                text:'哈囉我是 Push Message！'
-            }]
-        }),
-    });
+   client.pushMessage('Ca235f9483eb71d8f7a381b2777011c17', {
+  type: 'text',
+  text: 'Hello World!'
+});
 
 console.log("xx333333");
 	setInterval(test, 10000);
