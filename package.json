@@ -13,6 +13,7 @@
     "express": "^4.16.3"
   },
   "dependencies": {
-    "request": "^2.81.0"
+    "google-auth-library": "^0.10.0",
+    "googleapis": "^19.0.0"
   }
 }
