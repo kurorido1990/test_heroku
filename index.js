@@ -62,15 +62,15 @@ function handleEvent(event) {
 	}
 }
 
-var parylist = '〓 幸福的BEST 禱告名單\\n\
-(1 heart)安義：林世傑 Eran 莊岡陵\\n\
-(1 heart)雅珊：邱子庭 李盈華 毛毛\\n\
-\\n\
-(pencil)\\n\
-每週一 三 五中午或者當天找一時段為Best禱告\\n\
-每週三 聚會前/後期望可以一起為Best禱告\\n\
-\\n\
-(star)\\n\
+var parylist = '〓 幸福的BEST 禱告名單<br>\
+(1 heart)安義：林世傑 Eran 莊岡陵<br>\
+(1 heart)雅珊：邱子庭 李盈華 毛毛<br>\
+<br>\
+(pencil)<br>\
+每週一 三 五中午或者當天找一時段為Best禱告<br>\
+每週三 聚會前/後期望可以一起為Best禱告<br>\
+<br>\
+(star)<br>\
 ＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告';
 
 function test() {
