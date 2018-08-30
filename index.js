@@ -33,11 +33,19 @@ var base_time = Math.floor(new Date() / 1000);
 //程式啟動後會去讀取試算表內的問題
 
 function findSurrogatePair(point) {
-  // assumes point > 0xffff
-  var offset = point - 0x10000,
-      lead = 0xd800 + (offset >> 10),
-      trail = 0xdc00 + (offset & 0x3ff);
-  return [lead.toString(16), trail.toString(16)];
+ function toHex(str,hex){
+  try{
+    hex = unescape(encodeURIComponent(str))
+    .split('').map(function(v){
+      return v.charCodeAt(0).toString(16)
+    }).join('')
+  }
+  catch(e){
+    hex = str
+    console.log('invalid text input: ' + str)
+  }
+  return hex
+}
 }
 
 //取得鼓勵的詞彙內容的函式
@@ -80,7 +88,7 @@ function getBest(group_id, callback) {
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				best_list += heart.hexEncode() + " " + element[1] + "：" + element[2] + "\n";
+     				best_list += "\uDBC0\uDC84 " + element[1] + "：" + element[2] + "\n";
      				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
