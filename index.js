@@ -22,7 +22,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 function handleEvent(event) {
 	var source = event.source;
-	console.log(source);
+	console.log(event);
   	switch (event.message.type) {
 	  case 'text':
 	    switch (source.type) {
