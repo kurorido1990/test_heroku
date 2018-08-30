@@ -187,7 +187,7 @@ function test() {
 	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
 		out = best_list + "\n";
 		getPrayTime('C48e39d01abde6266ae70194513b4c2f5', function(prayTime){
-			out += prayTime + "\n\n \uDBC0\uDCB2 \nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			out += prayTime + "\n\n\uDBC0\uDCB2 \nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
 			client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
 				type: "text",
 				text: out
