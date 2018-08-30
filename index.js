@@ -186,7 +186,7 @@ test();
 function test() {
 	var out;
 let now = momentimezone(moment(), 'Asia/Taipei'); // Now
-let normalJavaScriptDate = now.toDate();
+let normalJavaScriptDate = momentimezone(now.toDate(), 'Asia/Taipei');
 let nowInTwoHours = now.clone().add(2, 'hours'); // Now in two hours
 let chaining = now.clone().add(2, 'hours').add(3, 'days'); // Now in 2 hours and 3 days.
 let startOfDay = now.clone().startOf('day') // set this date to 12:00am today
