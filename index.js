@@ -65,8 +65,10 @@ function handleEvent(event) {
 var timer2;
 function test() {
 
+console.log("xxxxxx");
     var CHANNEL_ACCESS_TOKEN = process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN;
     var url = 'https://api.line.me/v2/bot/message/push';
+    console.log("x11111xxxxx");
     request(url, {
         'headers': {
             'Content-Type': 'application/json; charset=UTF-8',
@@ -82,5 +84,6 @@ function test() {
         }),
     });
 
+console.log("xx333333");
 	setInterval(test, 10000);
 }
