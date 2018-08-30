@@ -186,12 +186,15 @@ test();
 function test() {
 	var out;
 let now = momentimezone(moment(), 'Asia/Taipei'); // Now
+let normalJavaScriptDate = now.toDate();
 let nowInTwoHours = now.clone().add(2, 'hours'); // Now in two hours
 let chaining = now.clone().add(2, 'hours').add(3, 'days'); // Now in 2 hours and 3 days.
 let startOfDay = now.clone().startOf('day') // set this date to 12:00am today
 let startOfMonth = moment().startOf('month'); // set to first of this month 12:00am
 let endOfYear = moment().endOf('year'); // 12-31 23:59:59.999 this year
 	console.log("now : " + now + " nowInTwoHours :" + nowInTwoHours + "startOfDay :" + startOfDay);
+
+	console.log("星期幾 : " + normalJavaScriptDate.getDay() + "幾點幾分" + normalJavaScriptDate.getHours() + ":" + normalJavaScriptDate.getMinutes());
 
 	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
 		out = best_list + "\n";
