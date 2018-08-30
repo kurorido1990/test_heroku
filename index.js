@@ -49,7 +49,7 @@ function getEncourage() {
 getBest('C48e39d01abde6266ae70194513b4c2f5');
 
 //這是讀取BestList的函式
-function getBest(group_id) {
+function getBest(group_id, callback) {
   var sheets = google.sheets('v4');
   sheets.spreadsheets.values.get({
      auth: oauth2Client,
@@ -75,13 +75,13 @@ function getBest(group_id) {
      		}
      	});
      	console.log(best_list);
-     	return best_list;
+     	callback(best_list);
      }
   });
 }
 
 //這是讀取禱告時間的函式
-function getPrayTime(group_id) {
+function getPrayTime(group_id, callback) {
   var sheets = google.sheets('v4');
   sheets.spreadsheets.values.get({
      auth: oauth2Client,
@@ -104,7 +104,7 @@ function getPrayTime(group_id) {
      			}     			
      		}
      	});
-     	return prayTime;
+     	callback(prayTime);
      }
   });
 }
@@ -163,15 +163,16 @@ function handleEvent(event) {
 
 test();
 function test() {
+	var out;
 
-	var best_list = getBest('C48e39d01abde6266ae70194513b4c2f5');
-	var prayTime = getPrayTime('C48e39d01abde6266ae70194513b4c2f5');
-
-	var out = best_list + "\n\n" + prayTime + "\n\n" + "(star)\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
-
-	client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
-		type: "text",
-		text: out
+	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
+		out = best_list + "\n\n";
+		getPrayTime('C48e39d01abde6266ae70194513b4c2f5', function(prayTime){
+			out = best_list + "\n\n(star)\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
+				type: "text",
+				text: out
+			});
+		});
 	});
-
 }
