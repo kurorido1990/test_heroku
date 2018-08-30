@@ -4,6 +4,11 @@ const request = require('request');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
+const heart = String.valueOf(Character.toChars(Integer.decode("0x100037")));
+const pen = String.valueOf(Character.toChars(Integer.decode("0x100041")));
+const beer = String.valueOf(Character.toChars(Integer.decode("0x100058")));
+
+
 const lineConfig = {
   channelAccessToken: process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.HEROKU_LINE_CHANNEL_SECRET
@@ -63,12 +68,12 @@ function getBest(group_id, callback) {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
-     	var best_list = "〓 幸福的BEST 禱告名單\n";
+     	var best_list = "幸福的BEST 禱告名單\n";
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				best_list += element[1] + "：" + element[2] + "\n";
+     				best_list += heart + " " + element[1] + "：" + element[2] + "\n";
      				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
@@ -99,7 +104,7 @@ function getPrayTime(group_id, callback) {
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			if (element[0] == group_id) {
-     				prayTime = element[1];
+     				prayTime = pen + "\n" + element[1];
      			}     			
      		}
      	});
@@ -165,9 +170,9 @@ function test() {
 	var out;
 
 	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
-		out = best_list + "\n\n";
+		out = best_list + "\n";
 		getPrayTime('C48e39d01abde6266ae70194513b4c2f5', function(prayTime){
-			out += prayTime + "\n\n(star)\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			out += prayTime + "\n\n" + beer + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
 			client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
 				type: "text",
 				text: out
