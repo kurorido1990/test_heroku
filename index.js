@@ -28,6 +28,32 @@ var myReplies=[];
 //程式啟動後會去讀取試算表內的問題
 //getQuestions();
 getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
+getEncourage();
 //取得歡迎詞內容的函式
 function getEncourage() {
    var sheets = google.sheets('v4');
