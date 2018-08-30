@@ -65,13 +65,9 @@ var timer2;
 function test() {
 
 console.log("xxxxxx");
-   client.pushMessage('Ca235f9483eb71d8f7a381b2777011c17', json({
+   client.pushMessage('Ca235f9483eb71d8f7a381b2777011c17', {
   type: 'text',
   text: 'Hello World!'
-})).then(function(){
-	console.log("not xxxxx");
-}).catch((error) => {
-  console.log(error);
 });
 
 console.log("xx333333");
