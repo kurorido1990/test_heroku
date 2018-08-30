@@ -1,5 +1,7 @@
 const line = require('@line/bot-sdk');
 const express = require('express');
+const request = require('request');
+
 const lineConfig = {
   channelAccessToken: process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN,
   channelSecret: process.env.HEROKU_LINE_CHANNEL_SECRET
@@ -30,8 +32,7 @@ function handleEvent(event) {
 	          type: 'text',
 	          text: '你是user'
 	        }).then(function() {
-	          return client.pushMessage({
-	          	to : 'Ca235f9483eb71d8f7a381b2777011c17',
+	          return client.pushMessage(source.userId, {
 	            type: 'text',
 	            text: '使用userId推送訊息'
 	          });
@@ -63,9 +64,22 @@ function handleEvent(event) {
 var timer2;
 function test() {
 
-	client.pushMessage('Ca235f9483eb71d8f7a381b2777011c17', {
-		type : 'text',
-		text : ('我就是個測試')
-	});
+    var CHANNEL_ACCESS_TOKEN = 'process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN';
+    var url = 'https://api.line.me/v2/bot/message/push';
+    request(url, {
+        'headers': {
+            'Content-Type': 'application/json; charset=UTF-8',
+            'Authorization': 'Bearer ' + CHANNEL_ACCESS_TOKEN,
+        },
+        'method': 'post',
+        'payload': JSON.stringify({
+            'to':  'Ca235f9483eb71d8f7a381b2777011c17',
+            'messages': [{
+                type:'text',
+                text:'哈囉我是 Push Message！'
+            }]
+        }),
+    });
+
 	setInterval(test, 10000);
 }
