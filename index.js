@@ -9,6 +9,7 @@ const lineConfig = {
 const client = new line.Client(lineConfig);
 const app = express();
 
+test();
 app.post('/', line.middleware(lineConfig), function(req, res) {
   Promise
     .all(req.body.events.map(handleEvent))
