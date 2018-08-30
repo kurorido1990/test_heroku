@@ -80,7 +80,7 @@ function getBest(group_id, callback) {
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				best_list += "0x100037 " + element[1] + "：" + element[2] + "\n";
+     				best_list += 0x100037.hexEncode() + " " + element[1] + "：" + element[2] + "\n";
      				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
