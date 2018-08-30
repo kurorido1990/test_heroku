@@ -68,7 +68,8 @@ function getBest(group_id) {
      	var best;
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
-     			if (element[0].equals(group_id)) {
+     			console.log("element : " + element + "index : " + index + "arr: " + arr );
+     			if (element[0] == group_id) {
      				console.log("小組員: " + element[1]);
      				console.log("Best: " + element[2]);
      			}
