@@ -28,32 +28,7 @@ var myReplies=[];
 //程式啟動後會去讀取試算表內的問題
 //getQuestions();
 getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
-getEncourage();
+
 //取得歡迎詞內容的函式
 function getEncourage() {
    var sheets = google.sheets('v4');
@@ -73,9 +48,9 @@ function getEncourage() {
       return response.values[choice][0];
    });
 } 
-
+getBest('C48e39d01abde6266ae70194513b4c2f5');
 //這是讀取問題的函式
-function getQuestions() {
+function getBest(group_id) {
   var sheets = google.sheets('v4');
   sheets.spreadsheets.values.get({
      auth: oauth2Client,
@@ -90,12 +65,23 @@ function getQuestions() {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
-       myQuestions=rows;
-       totalSteps=myQuestions[0].length;
-       console.log('人員清單讀取完畢！');
+     	var best;
+     	rows.forEach(function(element, index, arr){
+     		if (index > 0) {
+     			if (element[0].equals(group_id)) {
+     				console.log("小組員: " + element[1]);
+     				console.log("Best: " + element[2]);
+     			}
+     		}
+     	});
+        myQuestions=rows;
+        totalSteps=myQuestions[0].length;
+        console.log('人員清單讀取完畢！');
      }
   });
 }
+
+
 
 
 app.post('/', line.middleware(lineConfig), function(req, res) {
