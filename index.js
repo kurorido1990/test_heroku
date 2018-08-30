@@ -31,7 +31,7 @@ function handleEvent(event) {
 	          text: '你是user'
 	        }).then(function() {
 	          return client.pushMessage({
-	          	to : 'Ca235f9483eb71d8f7a381b2777011c17'
+	          	to : 'Ca235f9483eb71d8f7a381b2777011c17',
 	            type: 'text',
 	            text: '使用userId推送訊息'
 	          });
