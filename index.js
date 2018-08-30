@@ -43,8 +43,8 @@ function getEncourage() {
       var choice = Math.floor(Math.random() * response.values.length);
       console.log("choice : " + choice + " length : " + response.values.length);
 
+      console.log("鼓勵的詞彙 : " + response.values[choice][0]);
       return response.values[choice][0];
-      console.log('title已下載完畢！');
    });
 } 
 
