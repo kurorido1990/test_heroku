@@ -7,6 +7,8 @@ const lineConfig = {
 const client = new line.Client(lineConfig);
 const app = express();
 
+test();
+
 app.post('/', line.middleware(lineConfig), function(req, res) {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -14,7 +16,7 @@ app.post('/', line.middleware(lineConfig), function(req, res) {
       res.json(result);
     });
 });
-test();
+
 var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
   console.log("App now running on port", port);
