@@ -14,7 +14,7 @@ app.post('/', line.middleware(lineConfig), function(req, res) {
       res.json(result);
     });
 });
-
+test();
 var server = app.listen(process.env.PORT || 8080, function() {
   var port = server.address().port;
   console.log("App now running on port", port);
@@ -22,7 +22,6 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 function handleEvent(event) {
 	var source = event.source;
-	console.log(event);
   	switch (event.message.type) {
 	  case 'text':
 	    switch (source.type) {
@@ -54,6 +53,6 @@ function handleEvent(event) {
 var timer2;
 function test() {
 	clearTimeout(timer2);
-	client.pushMessage();
+	client.pushMessage('Ca235f9483eb71d8f7a381b2777011c17', 'test');
 	setInterval(test, 10000);
 }
