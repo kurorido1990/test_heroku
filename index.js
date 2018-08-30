@@ -22,6 +22,7 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 function handleEvent(event) {
 	var source = event.source;
+	console.log(source);
   	switch (event.message.type) {
 	  case 'text':
 	    switch (source.type) {
@@ -48,4 +49,11 @@ function handleEvent(event) {
 	        });
 	    }
 	}
+}
+
+var timer2;
+function test() {
+	clearTimeout(timer2);
+	client.pushMessage();
+	setInterval(test, 10000);
 }
