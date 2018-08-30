@@ -83,12 +83,12 @@ function getBest(group_id, callback) {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
-     	var best_list = "幸福的BEST 禱告名單\n";
+     	var best_list = "〓 幸福的BEST 禱告名單 〓\n";
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				best_list += "\uDBC0\uDC84 " + element[1] + "：" + element[2] + "\n";
+     				best_list += "\uDBC0\uDC37 " + element[1] + "：" + element[2] + "\n";
      				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
@@ -119,7 +119,7 @@ function getPrayTime(group_id, callback) {
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			if (element[0] == group_id) {
-     				prayTime = pen + "\n" + element[1];
+     				prayTime = "\uDBC0\uDC41 \n" + element[1];
      			}     			
      		}
      	});
@@ -187,7 +187,7 @@ function test() {
 	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
 		out = best_list + "\n";
 		getPrayTime('C48e39d01abde6266ae70194513b4c2f5', function(prayTime){
-			out += prayTime + "\n\n" + beer + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			out += prayTime + "\n\n \uDBC0\uDCB2 \nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
 			client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
 				type: "text",
 				text: out
