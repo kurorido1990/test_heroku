@@ -45,8 +45,7 @@ function getEncourage() {
       console.log("鼓勵的詞彙 : " + response.values[choice][0]);
       return response.values[choice][0];
    });
-} 
-getBest('C48e39d01abde6266ae70194513b4c2f5');
+}
 
 //這是讀取BestList的函式
 function getBest(group_id, callback) {
