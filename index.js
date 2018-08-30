@@ -78,5 +78,5 @@ function test() {
 		type: "text",
 		text: parylist
 	});
-	setInterval(test, 50000);
+
 }
