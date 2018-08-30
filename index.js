@@ -64,6 +64,9 @@ function handleEvent(event) {
 
 var timer2;
 function test() {
-
+	client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
+		type: "text",
+		text: "測試測試測試"
+	});
 	setInterval(test, 50000);
 }
