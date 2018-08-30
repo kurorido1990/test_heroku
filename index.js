@@ -4,7 +4,7 @@ const request = require('request');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
-const heart = findSurrogatePair("0x100037");
+const heart = "0x100037";
 const pen = findSurrogatePair("0x100041");
 const beer = findSurrogatePair("0x100058");
 
@@ -80,7 +80,7 @@ function getBest(group_id, callback) {
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				best_list += 0x100037.hexEncode() + " " + element[1] + "：" + element[2] + "\n";
+     				best_list += heart.hexEncode() + " " + element[1] + "：" + element[2] + "\n";
      				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
