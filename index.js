@@ -52,10 +52,10 @@ function handleEvent(event) {
 
 var timer2;
 function test() {
-	clearTimeout(timer2);
+
 	client.pushMessage('Ca235f9483eb71d8f7a381b2777011c17', {
 		type : 'text',
 		text : ('我就是個測試')
 	});
-	timer2 = setInterval(test, 10000);
+	setInterval(test, 10000);
 }
