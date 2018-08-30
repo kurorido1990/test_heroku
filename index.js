@@ -65,7 +65,7 @@ function handleEvent(event) {
 var timer2;
 function test() {
 
-    var CHANNEL_ACCESS_TOKEN = 'process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN';
+    var CHANNEL_ACCESS_TOKEN = process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN;
     var url = 'https://api.line.me/v2/bot/message/push';
     request(url, {
         'headers': {
