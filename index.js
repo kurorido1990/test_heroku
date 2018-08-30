@@ -4,9 +4,9 @@ const request = require('request');
 var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 
-const heart = String.valueOf(Character.toChars(Integer.decode("0x100037")));
-const pen = String.valueOf(Character.toChars(Integer.decode("0x100041")));
-const beer = String.valueOf(Character.toChars(Integer.decode("0x100058")));
+const heart = findSurrogatePair("0x100037");
+const pen = findSurrogatePair("0x100041");
+const beer = findSurrogatePair("0x100058");
 
 
 const lineConfig = {
@@ -32,6 +32,13 @@ var base_time = Math.floor(new Date() / 1000);
 
 //程式啟動後會去讀取試算表內的問題
 
+function findSurrogatePair(point) {
+  // assumes point > 0xffff
+  var offset = point - 0x10000,
+      lead = 0xd800 + (offset >> 10),
+      trail = 0xdc00 + (offset & 0x3ff);
+  return [lead.toString(16), trail.toString(16)];
+}
 
 //取得鼓勵的詞彙內容的函式
 function getEncourage() {
