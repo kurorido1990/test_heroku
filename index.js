@@ -23,26 +23,36 @@ var server = app.listen(process.env.PORT || 8080, function() {
 function handleEvent(event) {
   	switch (event.message.type) {
 	  case 'text':
+	    var source = event.source;
 	    switch (source.type) {
 	      case 'user':
-	      return client.getProfile(source.userId).then(function(profile) {
 	        return client.replyMessage(event.replyToken, {
 	          type: 'text',
-	          text: ('你的名字是: '+profile.displayName+'，你的狀態是: '+profile.statusMessage)
-	        });
-	      });
-	      case 'group':
-	        return client.getGroupMemberProfile(source.groupId,    source.userId).then(function(profile) {
-	          return client.replyMessage(event.replyToken, {
+	          text: '你是user'
+	        }).then(function() {
+	          return client.pushMessage(source.userId, {
 	            type: 'text',
-	            text: ('你的名字是: '+profile.displayName+'，你的狀態是: '+profile.statusMessage)
+	            text: '使用userId推送訊息'
 	          });
 	        });
 	      case 'room':
-	        return client.getRoomMemberProfile(source.roomId, source.userId).then(function(profile) {
-	          return client.replyMessage(event.replyToken, {
+	        return client.replyMessage(event.replyToken, {
+	          type: 'text',
+	          text: '你是room'
+	        }).then(function() {
+	          return client.pushMessage(source.roomId, {
 	            type: 'text',
-	            text: ('你的名字是: '+profile.displayName+'，你的狀態是: '+profile.statusMessage)
+	            text: '使用roomId推送訊息'
+	          });
+	        });
+	      case 'group':
+	        return client.replyMessage(event.replyToken, {
+	          type: 'text',
+	          text: '你是group'
+	        }).then(function() {
+	          return client.pushMessage(source.groupId, {
+	            type: 'text',
+	            text: '使用groupId推送訊息'
 	          });
 	        });
 	    }
