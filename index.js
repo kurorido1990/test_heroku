@@ -65,19 +65,18 @@ function getBest(group_id) {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
-     	var best;
+     	var best_list;
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				console.log("小組員: " + element[1]);
-     				console.log("Best: " + element[2]);
+     				best_list += element[1] + ": " + element[2] + "\n";
+     				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
      	});
-        myQuestions=rows;
-        totalSteps=myQuestions[0].length;
-        console.log('人員清單讀取完畢！');
+     	console.log(best_list);
+     	return best_list;
      }
   });
 }
