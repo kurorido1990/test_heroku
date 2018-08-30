@@ -23,13 +23,12 @@ var mySheetId='1fxtBrKtUrtdMvLJB6XyFLub2AYFIAcKOkVw-fZ-Li8s';
 var myQuestions=[];
 var users=[];
 var totalSteps=0;
-var myReplies=[];
+var base_time = Math.floor(new Date() / 1000);
 
 //程式啟動後會去讀取試算表內的問題
-//getQuestions();
-getEncourage();
 
-//取得歡迎詞內容的函式
+
+//取得鼓勵的詞彙內容的函式
 function getEncourage() {
    var sheets = google.sheets('v4');
    sheets.spreadsheets.values.get({
@@ -42,14 +41,14 @@ function getEncourage() {
          return;
       }
       var choice = Math.floor(Math.random() * response.values.length);
-      console.log("choice : " + choice + " length : " + response.values.length);
 
       console.log("鼓勵的詞彙 : " + response.values[choice][0]);
       return response.values[choice][0];
    });
 } 
 getBest('C48e39d01abde6266ae70194513b4c2f5');
-//這是讀取問題的函式
+
+//這是讀取BestList的函式
 function getBest(group_id) {
   var sheets = google.sheets('v4');
   sheets.spreadsheets.values.get({
@@ -65,7 +64,7 @@ function getBest(group_id) {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
-     	var best_list = "";
+     	var best_list = "〓 幸福的BEST 禱告名單\n";
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
@@ -81,6 +80,34 @@ function getBest(group_id) {
   });
 }
 
+//這是讀取禱告時間的函式
+function getPrayTime(group_id) {
+  var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+     auth: oauth2Client,
+     spreadsheetId: mySheetId,
+     range:encodeURI('禱告時間'),
+  }, function(err, response) {
+     if (err) {
+        console.log('讀取問題檔的API產生問題：' + err);
+        return;
+     }
+     var rows = response.values;
+     if (rows.length == 0) {
+        console.log('No data found.');
+     } else {
+     	var prayTime;
+     	rows.forEach(function(element, index, arr){
+     		if (index > 0) {
+     			if (element[0] == group_id) {
+     				prayTime = element[1];
+     			}     			
+     		}
+     	});
+     	return prayTime;
+     }
+  });
+}
 app.post('/', line.middleware(lineConfig), function(req, res) {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -134,21 +161,17 @@ function handleEvent(event) {
 	}
 }
 
-var parylist = '〓 幸福的BEST 禱告名單\n\
-(1 heart)安義：林世傑 Eran 莊岡陵\n\
-(1 heart)雅珊：邱子庭 李盈華 毛毛\n\
-\n\
-(pencil)\n\
-每週一 三 五中午或者當天找一時段為Best禱告\n\
-每週三 聚會前/後期望可以一起為Best禱告\n\
-\n\
-(star)\n\
-ＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告';
-
+test();
 function test() {
+
+	var best_list = getBest('C48e39d01abde6266ae70194513b4c2f5');
+	var prayTime = getPrayTime('C48e39d01abde6266ae70194513b4c2f5');
+
+	var out = best_list + "\n\n" + prayTime + "\n\n" + "(star)\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+
 	client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
 		type: "text",
-		text: parylist
+		text: out
 	});
 
 }
