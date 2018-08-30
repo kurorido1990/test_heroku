@@ -65,7 +65,7 @@ function getBest(group_id) {
      if (rows.length == 0) {
         console.log('No data found.');
      } else {
-     	var best_list;
+     	var best_list = "";
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
@@ -80,9 +80,6 @@ function getBest(group_id) {
      }
   });
 }
-
-
-
 
 app.post('/', line.middleware(lineConfig), function(req, res) {
   Promise
