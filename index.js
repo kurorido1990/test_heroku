@@ -8,7 +8,7 @@ const lineConfig = {
 };
 const client = new line.Client(lineConfig);
 const app = express();
-
+test();
 app.post('/', line.middleware(lineConfig), function(req, res) {
   Promise
     .all(req.body.events.map(handleEvent))
@@ -68,11 +68,12 @@ console.log("xxxxxx");
    client.pushMessage('Ca235f9483eb71d8f7a381b2777011c17', {
   type: 'text',
   text: 'Hello World!'
+}).then(function(){
+	console.log("not xxxxx");
 }).catch((error) => {
-  assert.isNotOk(error,'Promise error');
-  done();
+  console.log(error);
 });
 
 console.log("xx333333");
-	setInterval(test, 10000);
+	setInterval(test, 50000);
 }
