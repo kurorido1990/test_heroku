@@ -188,7 +188,7 @@ function fighting(groupId) {
 	getEncourage(function(Encourage_word){
 		out = Encourage_word + "\n\n"
 		getBest(groupId, function(best_list){
-			out += best_list;
+			out += best_list+ "\n" + star + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
 			client.pushMessage(groupId, {
 				type: "text",
 				text : out
