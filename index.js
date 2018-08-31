@@ -170,16 +170,20 @@ function checkbrocast() {
 						 var hour = element[2].split(":");
 						 console.log("day : " + element[1] + " hour: " + hour[0] + " g_hour: " + g_hour);
 
-						 if (element[1] == time.day && hour[0] == time.hour && g_hour == hour[0]){
+						 if (element[1] == time.day && hour[0] == time.hour){
 							fighting(element[0]);
 						 }
      		}
 			 });
-			 g_hour = time.hour;
      }
 	});
 	
 	setInterval(checkbrocast, 60000 * 60);
+}
+
+function idontneedidle() {
+	console.log("現在時間: " + g_hour + " : " + g_now.getMinutes());
+	setInterval(idontneedidle, 60000 * 25);
 }
 
 function fighting(groupId) {
