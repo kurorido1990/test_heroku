@@ -181,7 +181,7 @@ function getTime() {
 }
 
 let g_now = moment().toDate();
-let g_hour = (now.getHours() + 8 < 24) ? now.getHours() + 8 : (now.getHours() + 8) - 24;
+let g_hour = (g_now.getHours() + 8 < 24) ? g_now.getHours() + 8 : (g_now.getHours() + 8) - 24;
 checkbrocast();
 function checkbrocast() {
 	var sheets = google.sheets('v4');
