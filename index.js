@@ -204,7 +204,7 @@ function checkbrocast() {
      		if (index > 0) {
 					 console.log("element : " + element + "g_hour: " + g_hour + "time : " + time);
 						 var hour = element[2].split(":");
-						 console.log("day : " + element[1] + " hour: " + hour[0]);
+						 console.log("day : " + element[1] + " hour: " + hour[0] + "g_hour: " + g_hour);
 
 						 if (element[1] == time.day && hour[0] < time.hour && g_hour > hour[0]){
 							 test(element[0]);
@@ -215,7 +215,7 @@ function checkbrocast() {
      }
 	});
 	
-	setInterval(checkbrocast, 120000);
+	setInterval(checkbrocast, 60000);
 }
 
 function test(groupId) {
