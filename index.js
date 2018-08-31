@@ -9,7 +9,7 @@ let momentimezone = require("moment-timezone");
 const heart = "\uDBC0\uDC37";
 const pen = "\uDBC0\uDC41";
 const star = "\uDBC0\uDCB2";
-
+const bye_msg = star + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
 
 const lineConfig = {
   channelAccessToken: process.env.HEROKU_LINE_CHANNEL_ACCESS_TOKEN,
@@ -26,11 +26,6 @@ oauth2Client.credentials ={"access_token":"ya29.GlsJBmmClrvARWQVeVEVuD8ei1EV0krV
 
 //試算表的ID，引號不能刪掉
 var mySheetId='1fxtBrKtUrtdMvLJB6XyFLub2AYFIAcKOkVw-fZ-Li8s';
-
-var myQuestions=[];
-var users=[];
-var totalSteps=0;
-var base_time = Math.floor(new Date() / 1000);
 
 //取得鼓勵的詞彙內容的函式
 function getEncourage(callback) {
@@ -181,19 +176,13 @@ function checkbrocast() {
 	setInterval(checkbrocast, 60000 * 60);
 }
 
-idontneedidle();
-function idontneedidle() {
-	console.log("現在時間: " + g_hour + " : " + g_now.getMinutes());
-	setInterval(idontneedidle, 60000 * 25);
-}
-
 function fighting(groupId) {
 	var out;
 
 	getEncourage(function(Encourage_word){
 		out = Encourage_word + "\n\n"
 		getBest(groupId, function(best_list){
-			out += best_list+ "\n" + star + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			out += best_list+ "\n" + bye_msg;
 			client.pushMessage(groupId, {
 				type: "text",
 				text : out
@@ -214,7 +203,7 @@ function test(groupId) {
 	getBest(groupId, function(best_list){
 		out = best_list + "\n";
 		getPrayTime(groupId, function(prayTime){
-			out += prayTime + "\n\n" + star + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			out += prayTime + "\n\n" + bye_msg;
 			client.pushMessage(groupId, {
 				type: "text",
 				text: out
