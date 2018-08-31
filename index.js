@@ -6,9 +6,9 @@ var googleAuth = require('google-auth-library');
 let moment = require("moment");
 let momentimezone = require("moment-timezone");
 
-const heart = "0x100037";
-const pen = findSurrogatePair("0x100041");
-const beer = findSurrogatePair("0x100058");
+const heart = "\uDBC0\uDC37";
+const pen = "\uDBC0\uDC41";
+const star = "\uDBC0\uDCB2";
 
 
 const lineConfig = {
@@ -31,24 +31,6 @@ var myQuestions=[];
 var users=[];
 var totalSteps=0;
 var base_time = Math.floor(new Date() / 1000);
-
-//程式啟動後會去讀取試算表內的問題
-
-function findSurrogatePair(point) {
- function toHex(str,hex){
-  try{
-    hex = unescape(encodeURIComponent(str))
-    .split('').map(function(v){
-      return v.charCodeAt(0).toString(16)
-    }).join('')
-  }
-  catch(e){
-    hex = str
-    console.log('invalid text input: ' + str)
-  }
-  return hex
-}
-}
 
 //取得鼓勵的詞彙內容的函式
 function getEncourage() {
@@ -90,7 +72,7 @@ function getBest(group_id, callback) {
      		if (index > 0) {
      			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
-     				best_list += "\uDBC0\uDC37 " + element[1] + "：" + element[2] + "\n";
+     				best_list += heart + " " + element[1] + "：" + element[2] + "\n";
      				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
@@ -121,7 +103,7 @@ function getPrayTime(group_id, callback) {
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
      			if (element[0] == group_id) {
-     				prayTime = "\uDBC0\uDC41 \n" + element[1];
+     				prayTime = pen + "\n" + element[1];
      			}     			
      		}
      	});
@@ -182,6 +164,22 @@ function handleEvent(event) {
 	}
 }
 
+getTime();
+function getTime() {
+	let now = moment().toDate();
+	let day = now.getDay() + 1;
+	let hour = now.getHours();
+
+	if (hour + 8 < 24) {
+		hour += 8;
+	} else {
+		hour = (hour + 8) - 24;
+		day += 1;
+	}
+
+	console.log("星期: " + day + " 時間: " + hour);
+}
+
 test();
 function test() {
 	var out;
@@ -192,14 +190,14 @@ let chaining = now.clone().add(2, 'hours').add(3, 'days'); // Now in 2 hours and
 let startOfDay = now.clone().startOf('day') // set this date to 12:00am today
 let startOfMonth = moment().startOf('month'); // set to first of this month 12:00am
 let endOfYear = moment().endOf('year'); // 12-31 23:59:59.999 this year
-	console.log("now : " + now + " nowInTwoHours :" + nowInTwoHours + "startOfDay :" + startOfDay);
+	//console.log("now : " + now + " nowInTwoHours :" + nowInTwoHours + "startOfDay :" + startOfDay);
 
-	console.log("星期幾 : " + momentimezone(normalJavaScriptDate.getDay()).tz('Asia/Taipei') + "幾點幾分" + normalJavaScriptDate.getHours() + ":" + normalJavaScriptDate.getMinutes());
+	//console.log("星期幾 : " + momentimezone(normalJavaScriptDate.getDay()).tz('Asia/Taipei') + "幾點幾分" + normalJavaScriptDate.getHours() + ":" + normalJavaScriptDate.getMinutes());
 
 	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
 		out = best_list + "\n";
 		getPrayTime('C48e39d01abde6266ae70194513b4c2f5', function(prayTime){
-			out += prayTime + "\n\n\uDBC0\uDCB2 \nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
+			out += prayTime + "\n\n" + star + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
 			client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
 				type: "text",
 				text: out
