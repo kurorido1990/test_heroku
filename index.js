@@ -215,7 +215,7 @@ function checkbrocast() {
      }
 	});
 	
-	setInterval(checkbrocast, 60000);
+	setInterval(checkbrocast, 60000 * 60);
 }
 
 fighting('C48e39d01abde6266ae70194513b4c2f5');
