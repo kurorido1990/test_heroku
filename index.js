@@ -206,7 +206,7 @@ function checkbrocast() {
 						 var hour = element[2].split(":");
 						 console.log("day : " + element[1] + " hour: " + hour[0]);
 
-						 if ($element[1] == time.day && hour[0] < time.hour && g_hour > hour[0]){
+						 if (element[1] == time.day && hour[0] < time.hour && g_hour > hour[0]){
 							 test(element[0]);
 						 }
      		}
