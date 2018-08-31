@@ -171,7 +171,7 @@ function checkbrocast() {
 						 console.log("day : " + element[1] + " hour: " + hour[0] + " g_hour: " + g_hour);
 
 						 if (element[1] == time.day && hour[0] == time.hour && g_hour == hour[0]){
-							 test(element[0]);
+							fighting(element[0]);
 						 }
      		}
 			 });
@@ -182,7 +182,6 @@ function checkbrocast() {
 	setInterval(checkbrocast, 60000 * 60);
 }
 
-fighting('C48e39d01abde6266ae70194513b4c2f5');
 function fighting(groupId) {
 	var out;
 
