@@ -218,7 +218,7 @@ function checkbrocast() {
 	setInterval(checkbrocast, 60000);
 }
 
-fighting(C48e39d01abde6266ae70194513b4c2f5);
+fighting('C48e39d01abde6266ae70194513b4c2f5');
 function fighting(groupId) {
 	var out;
 
@@ -230,11 +230,9 @@ function fighting(groupId) {
 				type: "text",
 				text : out
 			}).pushMessage(groupId,{
-				message:[{
 					type:'sticker',
 					packageId:'1',
 					stickerId:'2'
-				}]
 			});
 		});
 	});
