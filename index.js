@@ -203,14 +203,12 @@ function checkbrocast() {
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
 					 console.log("element : " + element + "g_hour: " + g_hour + "time : " + time);
-     			if (element[0] == group_id) {
 						 var hour = element[2].split(":");
 						 console.log("day : " + element[1] + " hour: " + hour[0]);
 
 						 if ($element[1] == time.day && hour[0] < time.hour && g_hour > hour[0]){
 							 test(element[0]);
 						 }
-     			}     			
      		}
 			 });
 			 g_hour = time.hour;
