@@ -167,7 +167,7 @@ function handleEvent(event) {
 getTime();
 function getTime() {
 	let now = moment().toDate();
-	let day = now.getDay() + 1;
+	let day = now.getDay();
 	let hour = now.getHours();
 
 	if (hour + 8 < 24) {
