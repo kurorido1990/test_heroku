@@ -180,8 +180,9 @@ function getTime() {
 	return {day : day, hour : hour};
 }
 
-let g_now = moment.toDate();
+let g_now = moment().toDate();
 let g_hour = (now.getHours() + 8 < 24) ? now.getHours() + 8 : (now.getHours() + 8) - 24;
+checkbrocast();
 function checkbrocast() {
 	var sheets = google.sheets('v4');
   sheets.spreadsheets.values.get({
@@ -201,6 +202,7 @@ function checkbrocast() {
 			 var time = getTime();
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
+					 console.log("element : " + element + "g_hour: " + g_hour + "time : " + time);
      			if (element[0] == group_id) {
 						 var hour = element[2].split(":");
 						 console.log("day : " + element[1] + " hour: " + hour[0]);
@@ -211,9 +213,11 @@ function checkbrocast() {
      			}     			
      		}
 			 });
-			g_hour = time.hour;
+			 g_hour = time.hour;
      }
-  });
+	});
+	
+	setInterval(checkbrocast, 120000);
 }
 
 function test(groupId) {
