@@ -202,7 +202,7 @@ function checkbrocast() {
 			 var time = getTime();
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
-					 console.log("element : " + element + " g_hour: " + g_hour + " time : " + time);
+					 console.log("element : " + element + " g_hour: " + g_hour + " time h: " + time.hour + " time d:" + time.day);
 						 var hour = element[2].split(":");
 						 console.log("day : " + element[1] + " hour: " + hour[0] + " g_hour: " + g_hour);
 
@@ -233,7 +233,7 @@ function fighting(groupId) {
 				client.pushMessage(groupId,{
 					type:'sticker',
 					packageId:'1',
-					stickerId:'2'
+					stickerId:'12'
 			});
 			});
 		});
