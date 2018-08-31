@@ -33,7 +33,7 @@ var totalSteps=0;
 var base_time = Math.floor(new Date() / 1000);
 
 //取得鼓勵的詞彙內容的函式
-function getEncourage() {
+function getEncourage(callback) {
    var sheets = google.sheets('v4');
    sheets.spreadsheets.values.get({
       auth: oauth2Client,
@@ -47,7 +47,7 @@ function getEncourage() {
       var choice = Math.floor(Math.random() * response.values.length);
 
       console.log("鼓勵的詞彙 : " + response.values[choice][0]);
-      return response.values[choice][0];
+      callback(response.values[choice][0]);
    });
 }
 
@@ -202,9 +202,9 @@ function checkbrocast() {
 			 var time = getTime();
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
-					 console.log("element : " + element + "g_hour: " + g_hour + "time : " + time);
+					 console.log("element : " + element + " g_hour: " + g_hour + " time : " + time);
 						 var hour = element[2].split(":");
-						 console.log("day : " + element[1] + " hour: " + hour[0] + "g_hour: " + g_hour);
+						 console.log("day : " + element[1] + " hour: " + hour[0] + " g_hour: " + g_hour);
 
 						 if (element[1] == time.day && hour[0] < time.hour && g_hour > hour[0]){
 							 test(element[0]);
@@ -216,6 +216,28 @@ function checkbrocast() {
 	});
 	
 	setInterval(checkbrocast, 60000);
+}
+
+fighting(C48e39d01abde6266ae70194513b4c2f5);
+function fighting(groupId) {
+	var out;
+
+	getEncourage(function(Encourage_word){
+		out = Encourage_word + "\n\n"
+		getBest(groupId, function(best_list){
+			out += best_list;
+			client.pushMessage(groupId, {
+				type: "text",
+				text : out
+			}).pushMessage(groupId,{
+				message:[{
+					type:'sticker',
+					packageId:'1',
+					stickerId:'2'
+				}]
+			});
+		});
+	});
 }
 
 function test(groupId) {
