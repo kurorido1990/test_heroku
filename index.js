@@ -177,28 +177,53 @@ function getTime() {
 		day += 1;
 	}
 
-	console.log("星期: " + day + " 時間: " + hour);
+	return {day : day, hour : hour};
 }
 
-test();
-function test() {
+let g_now = moment.toDate();
+let g_hour = (now.getHours() + 8 < 24) ? now.getHours() + 8 : (now.getHours() + 8) - 24;
+function checkbrocast() {
+	var sheets = google.sheets('v4');
+  sheets.spreadsheets.values.get({
+     auth: oauth2Client,
+     spreadsheetId: mySheetId,
+     range:encodeURI('提醒時間'),
+  }, function(err, response) {
+     if (err) {
+        console.log('讀取問題檔的API產生問題：' + err);
+        return;
+     }
+     var rows = response.values;
+     if (rows.length == 0) {
+        console.log('No data found.');
+     } else {
+			 var prayTime;
+			 var time = getTime();
+     	rows.forEach(function(element, index, arr){
+     		if (index > 0) {
+     			if (element[0] == group_id) {
+						 var hour = element[2].split(":");
+						 console.log("day : " + element[1] + " hour: " + hour[0]);
+
+						 if ($element[1] == time.day && hour[0] < time.hour && g_hour > hour[0]){
+							 test(element[0]);
+						 }
+     			}     			
+     		}
+			 });
+			g_hour = time.hour;
+     }
+  });
+}
+
+function test(groupId) {
 	var out;
-let now = momentimezone(moment(), 'Asia/Taipei'); // Now
-let normalJavaScriptDate = now.toDate();
-let nowInTwoHours = now.clone().add(2, 'hours'); // Now in two hours
-let chaining = now.clone().add(2, 'hours').add(3, 'days'); // Now in 2 hours and 3 days.
-let startOfDay = now.clone().startOf('day') // set this date to 12:00am today
-let startOfMonth = moment().startOf('month'); // set to first of this month 12:00am
-let endOfYear = moment().endOf('year'); // 12-31 23:59:59.999 this year
-	//console.log("now : " + now + " nowInTwoHours :" + nowInTwoHours + "startOfDay :" + startOfDay);
 
-	//console.log("星期幾 : " + momentimezone(normalJavaScriptDate.getDay()).tz('Asia/Taipei') + "幾點幾分" + normalJavaScriptDate.getHours() + ":" + normalJavaScriptDate.getMinutes());
-
-	getBest('C48e39d01abde6266ae70194513b4c2f5', function(best_list){
+	getBest(groupId, function(best_list){
 		out = best_list + "\n";
-		getPrayTime('C48e39d01abde6266ae70194513b4c2f5', function(prayTime){
+		getPrayTime(groupId, function(prayTime){
 			out += prayTime + "\n\n" + star + "\nＰＳ 假如沒有時間可以一起禱告也請在遙遠的那端看著同一片天空一起禱告";
-			client.pushMessage('C48e39d01abde6266ae70194513b4c2f5', {
+			client.pushMessage(groupId, {
 				type: "text",
 				text: out
 			});
