@@ -126,42 +126,6 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 function handleEvent(event) {
 	console.log(event);
-  	switch (event.message.type) {
-	  case 'text':
-	    var source = event.source;
-	    switch (source.type) {
-	      case 'user':
-	        return client.replyMessage(event.replyToken, {
-	          type: 'text',
-	          text: '你是user'
-	        }).then(function() {
-	          return client.pushMessage(source.userId, {
-	            type: 'text',
-	            text: '使用userId推送訊息'
-	          });
-	        });
-	      case 'room':
-	        return client.replyMessage(event.replyToken, {
-	          type: 'text',
-	          text: '你是room'
-	        }).then(function() {
-	          return client.pushMessage(source.roomId, {
-	            type: 'text',
-	            text: '使用roomId推送訊息'
-	          });
-	        });
-	      case 'group':
-	        return client.replyMessage(event.replyToken, {
-	          type: 'text',
-	          text: '你是group'
-	        }).then(function() {
-	          return client.pushMessage(source.groupId, {
-	            type: 'text',
-	            text: '使用groupId推送訊息'
-	          });
-	        });
-	    }
-	}
 }
 
 getTime();
