@@ -181,6 +181,7 @@ function checkbrocast() {
 	setInterval(checkbrocast, 60000 * 60);
 }
 
+idontneedidle();
 function idontneedidle() {
 	console.log("現在時間: " + g_hour + " : " + g_now.getMinutes());
 	setInterval(idontneedidle, 60000 * 25);
