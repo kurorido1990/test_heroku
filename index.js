@@ -229,10 +229,12 @@ function fighting(groupId) {
 			client.pushMessage(groupId, {
 				type: "text",
 				text : out
-			}).pushMessage(groupId,{
+			}).then(function(){
+				client.pushMessage(groupId,{
 					type:'sticker',
 					packageId:'1',
 					stickerId:'2'
+			});
 			});
 		});
 	});
