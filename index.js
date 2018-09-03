@@ -173,7 +173,7 @@ function checkbrocast() {
      }
 	});
 	
-	setInterval(checkbrocast, 60000 * 60);
+	setInterval(checkbrocast, 3600000);
 }
 
 function fighting(groupId) {
