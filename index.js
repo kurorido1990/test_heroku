@@ -141,8 +141,8 @@ function getTime() {
 
 let g_now = moment().toDate();
 let g_hour = (g_now.getHours() + 8 < 24) ? g_now.getHours() + 8 : (g_now.getHours() + 8) - 24;
-checkbrocast();
-function checkbrocast() {
+
+var timer = setTimeout(function(){
 	var sheets = google.sheets('v4');
   sheets.spreadsheets.values.get({
      auth: oauth2Client,
@@ -170,11 +170,11 @@ function checkbrocast() {
 						 }
      		}
 			 });
-     }
+		 }
+		 
+		 timer = setTimeout(arguments.callee, 3600000);
 	});
-	
-	setInterval(checkbrocast, 3600000);
-}
+});
 
 function fighting(groupId) {
 	var out;
