@@ -171,9 +171,9 @@ var timer = setTimeout(function(){
      		}
 			 });
 		 }
-		 
-		 timer = setTimeout(arguments.callee, 1800000);
 	});
+			 
+	timer = setTimeout(arguments.callee, 60000);
 });
 
 function fighting(groupId) {
