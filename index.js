@@ -40,8 +40,6 @@ function getEncourage(callback) {
          return;
       }
       var choice = Math.floor(Math.random() * response.values.length);
-
-      console.log("鼓勵的詞彙 : " + response.values[choice][0]);
       callback(response.values[choice][0]);
    });
 }
@@ -65,14 +63,11 @@ function getBest(group_id, callback) {
      	var best_list = "〓 幸福的BEST 禱告名單 〓\n";
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
-     			console.log("element : " + element + "index : " + index + "arr: " + arr );
      			if (element[0] == group_id) {
      				best_list += heart + " " + element[1] + "：" + element[2] + "\n";
-     				console.log("小組員: " + element[1] + "Best: " + element[2]);
      			}
      		}
      	});
-     	console.log(best_list);
      	callback(best_list);
      }
   });
@@ -128,6 +123,7 @@ function getTime() {
 	let now = moment().toDate();
 	let day = now.getDay();
 	let hour = now.getHours();
+	let minutes = now.getMinutes();
 
 	if (hour + 8 < 24) {
 		hour += 8;
@@ -136,11 +132,12 @@ function getTime() {
 		day += 1;
 	}
 
-	return {day : day, hour : hour};
+	return {day : day, hour : hour, minutes : minutes};
 }
 
 let g_now = moment().toDate();
 let g_hour = (g_now.getHours() + 8 < 24) ? g_now.getHours() + 8 : (g_now.getHours() + 8) - 24;
+let g_minutes = g_now.getMinutes();
 
 var timer = setTimeout(function(){
 	var sheets = google.sheets('v4');
@@ -161,11 +158,11 @@ var timer = setTimeout(function(){
 			 var time = getTime();
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
-					 console.log("element : " + element + " g_hour: " + g_hour + " time h: " + time.hour + " time d:" + time.day);
+					 console.log("google sheet day: " + element[1] + ", today: " + time.day);
 						 var hour = element[2].split(":");
-						 console.log("day : " + element[1] + " hour: " + hour[0] + " g_hour: " + g_hour);
+						 console.log("google sheet time: " + hour[0] + " : " + hour[1] + ", now: " + time.hour + " : " + time.minutes);
 
-						 if (element[1] == time.day && hour[0] == time.hour){
+						 if (element[1] == time.day && hour[0] == time.hour && time.minutes == hour[1]){
 							fighting(element[0]);
 						 }
      		}
@@ -173,7 +170,7 @@ var timer = setTimeout(function(){
 		 }
 	});
 			 
-	timer = setTimeout(arguments.callee, 3600000);
+	timer = setTimeout(arguments.callee, 60000);
 });
 
 function fighting(groupId) {
