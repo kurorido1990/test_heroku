@@ -158,10 +158,7 @@ var timer = setTimeout(function(){
 			 var time = getTime();
      	rows.forEach(function(element, index, arr){
      		if (index > 0) {
-					 console.log("google sheet day: " + element[1] + ", today: " + time.day);
 						 var hour = element[2].split(":");
-						 console.log("google sheet time: " + hour[0] + " : " + hour[1] + ", now: " + time.hour + " : " + time.minutes);
-
 						 if (element[1] == time.day && hour[0] == time.hour && time.minutes == hour[1]){
 							fighting(element[0]);
 						 }
