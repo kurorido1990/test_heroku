@@ -26,7 +26,7 @@ oauth2Client.credentials ={"access_token":"ya29.GlsJBmmClrvARWQVeVEVuD8ei1EV0krV
 
 //試算表的ID，引號不能刪掉
 var mySheetId='1fxtBrKtUrtdMvLJB6XyFLub2AYFIAcKOkVw-fZ-Li8s';
-
+ 
 //取得鼓勵的詞彙內容的函式
 function getEncourage(callback) {
    var sheets = google.sheets('v4');
