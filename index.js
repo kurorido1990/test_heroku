@@ -130,7 +130,7 @@ function handleEvent(event) {
 			}
 	}
 }
-
+ 
 getTime();
 function getTime() {
 	let now = moment().toDate();
