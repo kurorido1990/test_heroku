@@ -116,22 +116,6 @@ var server = app.listen(process.env.PORT || 8080, function() {
 
 function handleEvent(event) {
 	console.log(event);
-	switch(event.message.type) {
-		case 'text':
-				var args = event.message.text.split("_");
-				var cmd = args[0];
-				var location = args[1];
-				if (cmd == "位置") {
-					client.pushMessage("C48e39d01abde6266ae70194513b4c2f5",{
-						type:'location',
-						title:'test',
-						address:'台北市信義區信義路六段15巷16號',
-						latitude:25.035082,
-						longitude:121.57565,
-				});
-				}
-		break;
-	}
 }
 
 getTime();
