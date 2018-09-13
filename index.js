@@ -130,7 +130,7 @@ function handleEvent(event) {
 						longitude:121.57565,
 				});
 				}
-		;
+		break;
 	}
 }
 
