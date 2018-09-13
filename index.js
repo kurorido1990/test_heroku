@@ -115,7 +115,20 @@ var server = app.listen(process.env.PORT || 8080, function() {
 });
 
 function handleEvent(event) {
-	console.log(event);
+	switch (event.type) {
+		case 'message':
+			switch (event.message.type) {
+				case 'text':
+					if (event.message.text == "位置")
+					return client.replyMessage(event.replyToken, {
+						type: 'location',
+						title: '台北復興堂',
+						address: '台北市信義區信義路六段 15 巷 16 號',
+						latitude: 25.035082,
+						longitude: 121.57565,
+					});
+			}
+	}
 }
 
 getTime();
